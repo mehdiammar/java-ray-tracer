@@ -16,6 +16,10 @@ public class Sphere {
     return this.color;
   }
   
+  public void setColor(Color c) {
+    this.color = c;
+  }
+  
   public Point getCenter() {
     return this.center;
   }

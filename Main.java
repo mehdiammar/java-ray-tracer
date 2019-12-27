@@ -10,8 +10,9 @@ public class Main {
     ArrayList<Object> objects = new ArrayList<Object>();
     
     objects.add(new Sphere(0.2, new Point(0, 0, 0), Color.toRGB("#5091C0"), true));
+    objects.add(new Sphere(0.1, new Point(-0.2, -0.3, -0.2), Color.toRGB("#224120"), true));
     objects.add(new Sphere(0.1, new Point(0.4, 0, 0), Color.toRGB("#FFFF00"), true));
-    objects.add(new Vector(-5.0, -15.0, -1)); // scene point light
+    objects.add(new Vector(-2.0, -0.4, -3)); // scene point light
     
     Scene scene = new Scene(new Point(0, 0, -1), WIDTH, HEIGHT, objects);
     

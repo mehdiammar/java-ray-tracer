@@ -11,9 +11,9 @@ public class Image {
     this.h = h;
     pixels = init(w, h);
   }
-  
+
   /*
-   * Initialize every pixel black 
+   * Initialize every pixel black
    */
 
   public Color[][] init(int w, int h) {
@@ -41,7 +41,7 @@ public class Image {
       e.printStackTrace();
     }
   }
-  
+
   /*
    * This method writes to the ppm file using the pixels 2D array filled with the colors from the render
    */
@@ -50,8 +50,9 @@ public class Image {
     StringBuffer str = new StringBuffer("P3 " + image.w + " " + image.h + " \n" + "255 \n"); // Header
     for (int j = 0; j < image.pixels[0].length; j++) {
       for (int i = 0; i < image.pixels.length; i++) {
-        str.append((int) image.pixels[i][j].getX() + " " + (int) image.pixels[i][j].getY() + " " + (int) image.pixels[i][j].getZ() + " "); 
-      } 
+        str.append(Math.min(255, (int) image.pixels[i][j].getX()) + " " + Math.min(255, (int) image.pixels[i][j].getY())
+            + " " + Math.min(255, (int) image.pixels[i][j].getZ()) + " ");
+      }
       str.append("\n");
     }
     return str.toString();

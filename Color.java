@@ -1,26 +1,24 @@
 
 public class Color extends Vector {
 
-  private double r, g, b;
-
   public Color(double r, double g, double b) {
     super(r, g, b);
   }
 
   public double getR() {
-    return r;
+    return x;
   }
 
   public double getG() {
-    return g;
+    return y;
   }
 
   public double getB() {
-    return b;
+    return z;
   }
   
   public double getRGB() {
-    return this.r + this.g + this.b;
+    return this.x + this.y + this.z;
   }
   
   public static Color toRGB(String h) {
