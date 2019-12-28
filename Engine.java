@@ -70,14 +70,14 @@ public class Engine<E> {
     Vector normal = hit_pos.sub(obj.getCenter());
     Ray reflected_ray = get_reflected_ray(normal, ray, hit_pos, l);
     Ray reflected_light = get_reflected_light_ray(normal, ray, hit_pos, l);
-    Vector view = normal.norm().mult(2).mult(- 1 * normal.norm().dot(ray.getDir()));
+    Vector view = normal.norm().mult(2).mult(-1 * normal.norm().dot(ray.getDir()));
 
     if (obj.isReflective() && ctrl < MAX) {
       ctrl++;
       reflected_color = ray_trace(reflected_ray, scene);
     }
 
-    color = colorAt(obj, scene, normal, reflected_color, view, reflected_light); // return fragment color
+    color = colorAt(obj, scene, normal, reflected_color, view, reflected_light, hit_pos); // return fragment color
 
     return color;
   }
@@ -107,10 +107,10 @@ public class Engine<E> {
 
   public Ray get_reflected_light_ray(Vector normal, Ray ray, Vector hit_pos, Vector l) {
     return new Ray(new Point(hit_pos.x, hit_pos.y, hit_pos.z), l.sub(normal.norm().mult(2).mult(normal.norm().dot(l))));
-
   }
 
-  public Color colorAt(Sphere obj, Scene scene, Vector normal, Color reflected_color, Vector view, Ray reflected) {
+  public Color colorAt(Sphere obj, Scene scene, Vector normal, Color reflected_color, Vector view, Ray reflected,
+      Vector hit_pos) {
     Vector l = null;
     Vector frag_color = null;
     for (Object o : scene.getObjects()) {
@@ -123,8 +123,14 @@ public class Engine<E> {
             diffuse = 0;
             specular = 0;
           }
-          frag_color = (obj.getColor()).mult(ambient_control * ambient_coef + (1 - ambient_coef) * diffuse + specular)
-              .add((reflected_color).mult(reflectivty_factor));
+          if (obj.isTextured()) {
+            frag_color = (obj.getMapping().findTextureColorAt(obj.getMapping().getWidth(), obj.getMapping().getHeight(),
+                obj, obj.getMapping(), hit_pos))
+                    .mult(ambient_control * ambient_coef + (1 - ambient_coef) * diffuse + specular)
+                    .add((reflected_color).mult(reflectivty_factor));
+          } else
+            frag_color = (obj.getColor()).mult(ambient_control * ambient_coef + (1 - ambient_coef) * diffuse + specular)
+                .add((reflected_color).mult(reflectivty_factor));
         }
       }
     }
