@@ -13,8 +13,8 @@ public class Sphere {
     this.center = center;
     this.color = color;
     this.isReflective = isReflective;
-    this.north = (new Vector(center.getX(), center.getY() - 1 * rad, center.getZ()).sub(center)).norm();
-    this.equator = (new Vector(center.getX() + rad, center.getY(), center.getZ()).sub(center)).norm();
+    this.north = (new Vector(center.getX(), center.getY() - 1 * rad, center.getZ())).norm();
+    this.equator = (new Vector(center.getX() + rad, center.getY(), center.getZ())).norm();
     if (texture != null)
       this.texture = new Mapping(texture);
     else
@@ -57,7 +57,7 @@ public class Sphere {
     double c = to_ray.dot(to_ray) - Math.pow(this.rad, 2);
     double discriminant = b * b - 4 * a * c;
 
-    if (discriminant >= 0) { // Intersected once (tangent ray) or twice an object, return the distance
+    if (discriminant >= 0) { // Intersected once (tangent ray) or twice an object, return the closest distance
       double dist = (-1 * b - Math.sqrt(discriminant)) / (2 * a);
       if (dist > 0)
         return dist;

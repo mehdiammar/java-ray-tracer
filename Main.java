@@ -17,8 +17,8 @@ public class Main {
      */
     
     objects.add(new Sphere(0.2, new Point(0, 0, 0), Color.toRGB("#5091C0"), true, texture_path));
-    objects.add(new Sphere(0.1, new Point(-0.2, -0.3, -0.2), Color.toRGB("#224120"), true, null));
-    objects.add(new Sphere(0.1, new Point(0.4, 0, 0), Color.toRGB("#FFFF00"), true, null));
+    objects.add(new Sphere(0.1, new Point(-0.2, -0.3, -0.2), Color.toRGB("#224120"), true, texture_path));
+    objects.add(new Sphere(0.1, new Point(0.4, 0, 0), Color.toRGB("#FFFF00"), true, texture_path));
     
     /*
      * Lightning setup

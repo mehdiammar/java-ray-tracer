@@ -44,7 +44,7 @@ public class Mapping {
   }
 
   public Color findTextureColorAt(int w, int h, Sphere sphere, Mapping texture, Vector hit_pos) {
-    Vector position = hit_pos.norm().sub(sphere.getCenter()).norm();
+    Vector position = (hit_pos.sub(sphere.getCenter())).norm();
     double u, v;
     double phi = Math.acos(1 * sphere.getNorth().dot(position));
     v = (phi / Math.PI);
