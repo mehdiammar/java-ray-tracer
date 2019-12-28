@@ -123,6 +123,8 @@ public class Engine<E> {
             diffuse = 0;
             specular = 0;
           }
+          if (!obj.isSpecular())
+            specular = 0;
           if (obj.isTextured()) {
             frag_color = (obj.getMapping().findTextureColorAt(obj.getMapping().getWidth(), obj.getMapping().getHeight(),
                 obj, obj.getMapping(), hit_pos))

@@ -4,15 +4,17 @@ public class Sphere {
   private Point center;
   private Color color;
   private boolean isReflective;
+  private boolean isSpecular;
   private Vector north;
   private Vector equator;
   private Mapping texture;
 
-  public Sphere(double rad, Point center, Color color, boolean isReflective, String texture) {
+  public Sphere(double rad, Point center, Color color, boolean isReflective, boolean isSpecular, String texture) {
     this.rad = rad;
     this.center = center;
     this.color = color;
     this.isReflective = isReflective;
+    this.isSpecular = isSpecular;
     this.north = (new Vector(center.getX(), center.getY() - 1 * rad, center.getZ())).norm();
     this.equator = (new Vector(center.getX() + rad, center.getY(), center.getZ())).norm();
     if (texture != null)
@@ -47,6 +49,10 @@ public class Sphere {
 
   public boolean isReflective() {
     return this.isReflective;
+  }
+  
+  public boolean isSpecular() {
+    return this.isSpecular;
   }
 
   public double intersects(Ray ray) {
